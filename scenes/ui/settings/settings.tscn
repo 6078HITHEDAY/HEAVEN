@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://nmwlshmwqtmu"]
+
+[ext_resource type="Script" uid="uid://c3r31401fbrgg" path="res://scripts/ui/settings/settings.gd" id="1_264ys"]
+[ext_resource type="Theme" uid="uid://c1pbmtjmklxa7" path="res://themes/ui/main_menu.tres" id="1_la6pl"]
+[ext_resource type="Theme" uid="uid://bk3vi885o5cax" path="res://themes/ui/settings.tres" id="1_qnmnb"]
+[ext_resource type="Texture2D" uid="uid://dg43vgd6csqsa" path="res://assets/ui/textures/main_menu/back.png" id="3_jlgii"]
+[ext_resource type="Texture2D" uid="uid://d0omfvmcw6jnc" path="res://assets/ui/textures/main_menu/rest.png" id="3_qrx2l"]
+[ext_resource type="Texture2D" uid="uid://b5yn6v78irijx" path="res://assets/ui/textures/main_menu/back_now.png" id="4_264ys"]
+[ext_resource type="Texture2D" uid="uid://bjya07r6tl6o2" path="res://assets/ui/textures/main_menu/rest_2.png" id="4_th8cd"]
+[ext_resource type="Texture2D" uid="uid://db06hifwsvpb4" path="res://assets/ui/textures/main_menu/back_xt.png" id="5_eyipv"]
+[ext_resource type="Texture2D" uid="uid://dw8di5ty57x5o" path="res://assets/ui/textures/main_menu/rest_1.png" id="5_oy58y"]
+[ext_resource type="AudioStream" uid="uid://d14cxopo7jqpw" path="res://assets/ui/audio/main_menu/interface.ogg" id="7_eyipv"]
+
+[node name="Setup" type="Node2D" unique_id=225431748]
+script = ExtResource("1_264ys")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1055100665]
+offset_left = 969.0
+offset_top = -4.0
+offset_right = 1929.0
+offset_bottom = 1085.0
+color = Color(0.5646144, 0.89655626, 0.907073, 1)
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=862380929]
+offset_top = -4.0
+offset_right = 960.0
+offset_bottom = 1080.0
+theme_override_font_sizes/font_size = 80
+current_tab = 0
+
+[node name="游玩" type="VBoxContainer" parent="TabContainer" unique_id=783195746]
+layout_mode = 2
+theme = ExtResource("1_qnmnb")
+theme_override_constants/separation = 12
+metadata/_tab_index = 0
+
+[node name="Master" type="HSlider" parent="TabContainer/游玩" unique_id=586946037]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 4
+allow_greater = true
+
+[node name="Master" type="Label" parent="TabContainer/游玩/Master" unique_id=704567440]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 138.0
+offset_right = 962.0
+offset_bottom = 221.0
+theme = ExtResource("1_qnmnb")
+theme_override_font_sizes/font_size = 60
+text = "MAIN VOLUME"
+horizontal_alignment = 1
+
+[node name="MUSIC" type="HSlider" parent="TabContainer/游玩" unique_id=382326913]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MUSIC" type="Label" parent="TabContainer/游玩/MUSIC" unique_id=89098849]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 137.0
+offset_right = 958.0
+offset_bottom = 220.0
+theme = ExtResource("1_qnmnb")
+theme_override_font_sizes/font_size = 60
+text = "MUSIC VOLUME"
+horizontal_alignment = 1
+
+[node name="SFX" type="HSlider" parent="TabContainer/游玩" unique_id=1928845307]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="SFX" type="Label" parent="TabContainer/游玩/SFX" unique_id=130379770]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.6750001
+anchor_right = 0.99700004
+anchor_bottom = 1.09
+offset_left = 1.0
+offset_top = -1.5258789e-05
+offset_right = -0.12005615
+theme = ExtResource("1_qnmnb")
+theme_override_font_sizes/font_size = 60
+text = "SFX VOLUME"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Reset_v" type="TextureButton" parent="TabContainer/游玩" unique_id=45182391]
+layout_mode = 2
+texture_normal = ExtResource("3_qrx2l")
+texture_pressed = ExtResource("4_th8cd")
+texture_hover = ExtResource("5_oy58y")
+stretch_mode = 1
+
+[node name="Node" type="Node" parent="TabContainer/游玩" unique_id=454670040]
+
+[node name="账户与统计" type="Button" parent="TabContainer" unique_id=1116008205]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_qnmnb")
+metadata/_tab_index = 1
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/账户与统计" unique_id=2100821455]
+layout_mode = 0
+offset_right = 963.0
+offset_bottom = 958.0
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/账户与统计/VSeparator" unique_id=2089549220]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.504
+anchor_top = 0.030000001
+anchor_right = 0.994
+anchor_bottom = 0.098000005
+offset_left = -0.35202026
+offset_top = 0.25999832
+offset_right = -0.2220459
+offset_bottom = 0.115997314
+theme_override_font_sizes/font_size = 50
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/账户与统计/VSeparator" unique_id=254127752]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 498.0
+offset_bottom = 959.0
+theme = ExtResource("1_la6pl")
+
+[node name="Label" type="Label" parent="TabContainer/账户与统计/VSeparator/VBoxContainer" unique_id=1125517154]
+layout_mode = 2
+theme_override_font_sizes/font_size = 94
+text = "Your name"
+
+[node name="Reset_xh" type="Button" parent="TabContainer/账户与统计/VSeparator/VBoxContainer" unique_id=1180310661]
+layout_mode = 2
+theme_override_font_sizes/font_size = 89
+text = "Reset"
+
+[node name="其他" type="Button" parent="TabContainer" unique_id=1637444048]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_qnmnb")
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/其他" unique_id=1929929421]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=569327549]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1677.0
+offset_top = 9.0
+offset_right = 1925.0
+offset_bottom = 257.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_jlgii")
+texture_pressed = ExtResource("4_264ys")
+texture_hover = ExtResource("5_eyipv")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1992866111]
+position = Vector2(1347, 374)
+stream = ExtResource("7_eyipv")
+autoplay = true
+bus = &"MUSIC"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1997810332]
+position = Vector2(1493, 419)
+scale = Vector2(1, 594)
+
+[connection signal="value_changed" from="TabContainer/游玩/Master" to="." method="_on_master_value_changed"]
+[connection signal="value_changed" from="TabContainer/游玩/MUSIC" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="TabContainer/游玩/SFX" to="." method="_on_sfx_value_changed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

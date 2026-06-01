@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://bk3vi885o5cax"]
+
+[ext_resource type="FontFile" uid="uid://d18vtwigt3m6b" path="res://assets/fonts/SourceHanSerifCN-Heavy.otf" id="1_4nbku"]
+[ext_resource type="FontFile" uid="uid://rsacowmkwndr" path="res://assets/fonts/SourceHanSerifCN-ExtraLight.otf" id="1_whjpf"]
+
+[resource]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/font_sizes/font_size = 158
+Button/fonts/font = ExtResource("1_whjpf")
+MenuBar/font_sizes/font_size = 364
+MenuBar/fonts/font = ExtResource("1_4nbku")

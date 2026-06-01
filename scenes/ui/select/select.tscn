@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://jnbojofas2g3"]
+
+[ext_resource type="Script" uid="uid://c7rhalkyex6mm" path="res://scripts/ui/select/select.gd" id="1_1r117"]
+[ext_resource type="Texture2D" uid="uid://dg43vgd6csqsa" path="res://assets/ui/textures/main_menu/back.png" id="2_cui00"]
+[ext_resource type="Texture2D" uid="uid://b5yn6v78irijx" path="res://assets/ui/textures/main_menu/back_now.png" id="3_mnfoh"]
+[ext_resource type="Texture2D" uid="uid://db06hifwsvpb4" path="res://assets/ui/textures/main_menu/back_xt.png" id="4_kcxpg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uird0"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+energy_multiplier = 0.5
+
+[sub_resource type="Sky" id="Sky_1r117"]
+sky_material = SubResource("ProceduralSkyMaterial_uird0")
+
+[sub_resource type="Environment" id="Environment_cui00"]
+background_mode = 2
+sky = SubResource("Sky_1r117")
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.26162252, 0.20185035, 0.3585304, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uird0"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 1.36
+detail_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_uird0"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_mnfoh"]
+density = 2.3333
+albedo = Color(0.7491327, 0.29793325, 0, 1)
+emission = Color(0.65012825, 0.6501283, 0.65012825, 1)
+edge_fade = 0.82821184
+
+[node name="Select" type="Node3D" unique_id=1950052303]
+script = ExtResource("1_1r117")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=213136688]
+transform = Transform3D(0.4939419, 0.036410667, 0.8687323, 0, 0.99912286, -0.041875653, -0.8694949, 0.02068414, 0.49350864, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1124752856]
+environment = SubResource("Environment_cui00")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1387157298]
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer" unique_id=2101857266]
+anchors_preset = -1
+anchor_left = 0.874
+anchor_top = 0.009000001
+anchor_right = 1.0040001
+anchor_bottom = 0.23900001
+offset_left = 0.9199219
+offset_top = 0.27999973
+offset_right = -0.6801758
+offset_bottom = -0.11999512
+texture_normal = ExtResource("2_cui00")
+texture_pressed = ExtResource("3_mnfoh")
+texture_hover = ExtResource("4_kcxpg")
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=643170833]
+transform = Transform3D(0.07174023, -0.03795422, 0.996701, 0.02434507, 0.9990447, 0.03629116, -0.9971262, 0.021661216, 0.07259569, 1.2661921, 0.06970346, -0.41762352)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=925805364]
+transform = Transform3D(-0.057964735, 0, -0.9983186, 0, 1, 0, 0.9983186, 0, -0.057964735, 0, 0, -0.07542908)
+material_override = SubResource("StandardMaterial3D_uird0")
+mesh = SubResource("BoxMesh_uird0")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=230418262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.0272024)
+bus = &"MUSIC"
+
+[node name="FogVolume" type="FogVolume" parent="." unique_id=548478020]
+transform = Transform3D(1, 0, 0, 0, 0.3179335, 0.948113, 0, -0.948113, 0.3179335, 0, 0.06504389, 0.021811355)
+size = Vector3(2, 2, 1.862793)
+material = SubResource("FogMaterial_mnfoh")
+
+[connection signal="pressed" from="CanvasLayer/TextureButton" to="." method="_on_texture_button_pressed"]

@@ -1,0 +1,15 @@
+[gd_resource type="Theme" format=3 uid="uid://c1pbmtjmklxa7"]
+
+[ext_resource type="FontFile" uid="uid://bifknav0pv014" path="res://assets/fonts/TrajanPro-Bold.otf" id="1_4nbku"]
+[ext_resource type="FontFile" uid="uid://chvr8iqiwcuu1" path="res://assets/fonts/Didot-Bold-1.ttf" id="2_whjpf"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 100
+Button/fonts/font = ExtResource("1_4nbku")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 100
+Label/fonts/font = ExtResource("2_whjpf")

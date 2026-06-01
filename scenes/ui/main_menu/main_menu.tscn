@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://bsjo1eqy3wv84"]
+
+[ext_resource type="Script" uid="uid://qk4lqhif2rvp" path="res://scripts/ui/main_menu/main_menu_3d.gd" id="1_5ssno"]
+[ext_resource type="Theme" uid="uid://c1pbmtjmklxa7" path="res://themes/ui/main_menu.tres" id="2_la6pl"]
+[ext_resource type="Script" uid="uid://damrhrr1i42li" path="res://scripts/ui/main_menu/main_menu_ui.gd" id="2_nrxv3"]
+[ext_resource type="AudioStream" uid="uid://g043yfoggr21" path="res://assets/ui/audio/main_menu/img_3590.ogg" id="4_8dbix"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_la6pl"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(1.1089189, 1.0765283, 1.1322898, 1)
+ground_bottom_color = Color(0.115539156, 0.16876903, 0.29521805, 1)
+ground_horizon_color = Color(1.1089189, 1.0765283, 1.1322898, 1)
+
+[sub_resource type="Sky" id="Sky_5ssno"]
+sky_material = SubResource("ProceduralSkyMaterial_la6pl")
+
+[sub_resource type="Environment" id="Environment_8dbix"]
+background_mode = 2
+sky = SubResource("Sky_5ssno")
+tonemap_mode = 2
+sdfgi_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.16386127, 0.1638613, 0.16386116, 1)
+volumetric_fog_emission = Color(0.029506508, 0.029506575, 0.029506557, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jlgii"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_la6pl"]
+rim_tint = 0.36
+
+[sub_resource type="FogMaterial" id="FogMaterial_la6pl"]
+albedo = Color(0.73225695, 0.82853025, 0.8648633, 1)
+
+[node name="choose" type="Node3D" unique_id=1306797806]
+script = ExtResource("1_5ssno")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1832949286]
+physics_interpolation_mode = 2
+environment = SubResource("Environment_8dbix")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1013028303]
+transform = Transform3D(-0.32886663, -0.4549568, 0.8275633, 0, 0.87630665, 0.4817537, -0.94437635, 0.15843272, -0.288188, 0, 0, 0)
+light_energy = 1.763
+light_volumetric_fog_energy = 1.965
+light_angular_distance = 1.3
+shadow_enabled = true
+directional_shadow_max_distance = 416.0
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=412667748]
+transform = Transform3D(0.9997314, 0.018000718, -0.014594386, -0.00032445558, 0.64059234, 0.76788116, 0.023171462, -0.7676701, 0.6404261, -0.11659101, 7.483676, 6.6633434)
+fov = 48.089115
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=689864160]
+transform = Transform3D(0.69722766, 0, -0.71684974, 0, 1, 0, 0.71684974, 0, 0.69722766, -0.1216315, -0.047795296, 0)
+mesh = SubResource("BoxMesh_jlgii")
+surface_material_override/0 = SubResource("StandardMaterial3D_la6pl")
+
+[node name="FogVolume" type="FogVolume" parent="." unique_id=1538192132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28204632, -2.3324668, -4.3607388)
+size = Vector3(37.204807, 2.2666016, 19.810402)
+material = SubResource("FogMaterial_la6pl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=334186253]
+script = ExtResource("2_nrxv3")
+
+[node name="about" type="Button" parent="CanvasLayer" unique_id=639155613]
+anchors_preset = -1
+anchor_left = 0.0765625
+anchor_top = 0.8384445
+anchor_right = 0.2831042
+anchor_bottom = 0.9557592
+offset_top = -0.52001953
+offset_right = -0.5600586
+offset_bottom = -0.2199707
+grow_vertical = 2
+theme = ExtResource("2_la6pl")
+text = "ABOUT"
+flat = true
+
+[node name="quit" type="Button" parent="CanvasLayer" unique_id=2140931892]
+anchors_preset = -1
+anchor_left = 0.78000003
+anchor_top = 0.772
+anchor_right = 0.92700005
+anchor_bottom = 0.89000005
+offset_left = -0.60009766
+offset_top = 0.23999023
+offset_right = 19.159912
+offset_bottom = -0.20007324
+theme = ExtResource("2_la6pl")
+text = "QUIT"
+flat = true
+
+[node name="setup" type="Button" parent="CanvasLayer" unique_id=1534545676]
+anchors_preset = -1
+anchor_left = 0.7591875
+anchor_top = 0.10314814
+anchor_right = 0.9616042
+anchor_bottom = 0.21759266
+offset_left = -0.64001465
+offset_top = -0.3999939
+offset_right = 0.7199707
+offset_bottom = -6.1035156e-05
+theme = ExtResource("2_la6pl")
+theme_override_font_sizes/font_size = 115
+text = "setup"
+flat = true
+
+[node name="select" type="Button" parent="CanvasLayer" unique_id=1379657357]
+anchors_preset = -1
+anchor_left = 0.62231255
+anchor_top = 0.4567037
+anchor_right = 0.9968959
+anchor_bottom = 0.6307778
+offset_left = -0.8400879
+offset_top = -0.23999023
+offset_right = -0.040161133
+offset_bottom = -0.23999023
+theme = ExtResource("2_la6pl")
+theme_override_font_sizes/font_size = 180
+text = "SELECT"
+flat = true
+
+[node name="SkipButton" type="Button" parent="CanvasLayer" unique_id=984998372]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1170096860]
+stream = ExtResource("4_8dbix")
+volume_db = -6.316
+max_db = 2.013
+autoplay = true
+bus = &"MUSIC"
+
+[connection signal="pressed" from="CanvasLayer/about" to="CanvasLayer" method="_on_about_pressed"]
+[connection signal="pressed" from="CanvasLayer/quit" to="CanvasLayer" method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/setup" to="CanvasLayer" method="_on_setup_pressed"]
+[connection signal="pressed" from="CanvasLayer/select" to="CanvasLayer" method="_on_select_pressed"]
+[connection signal="pressed" from="CanvasLayer/SkipButton" to="CanvasLayer" method="_on_skip_button_pressed"]

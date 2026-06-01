@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://ugwc4lm76bnq"]
+
+[ext_resource type="Shader" uid="uid://f3d21v23jksg" path="res://shaders/ui/start_menu/cube_flow.gdshader" id="1_gu0sw"]
+[ext_resource type="Script" uid="uid://b8o0w7uko8c1u" path="res://scripts/ui/start_menu/rotating_cube.gd" id="2_64n4t"]
+[ext_resource type="Script" uid="uid://c7bbqbxqkaaic" path="res://scripts/ui/start_menu/start_menu_ui.gd" id="3_0ljkr"]
+[ext_resource type="FontFile" uid="uid://d18vtwigt3m6b" path="res://assets/fonts/SourceHanSerifCN-Heavy.otf" id="4_0ljkr"]
+[ext_resource type="AudioStream" uid="uid://cv2gtmfxlnmu6" path="res://assets/ui/audio/start_menu/rewind.mp3" id="5_0ljkr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ljkr"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_ufmnb"]
+sky_material = SubResource("ProceduralSkyMaterial_0ljkr")
+
+[sub_resource type="Environment" id="Environment_acn53"]
+background_mode = 2
+sky = SubResource("Sky_ufmnb")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64n4t"]
+render_priority = 0
+shader = ExtResource("1_gu0sw")
+shader_parameter/base_color = Color(1, 0, 0, 1)
+shader_parameter/flow_color = Color(0, 0, 0, 1)
+shader_parameter/speed = 2.875
+shader_parameter/flow_width = 1.325
+shader_parameter/glow_intensity = 5.525
+
+[sub_resource type="BoxMesh" id="BoxMesh_s81mv"]
+material = SubResource("ShaderMaterial_64n4t")
+size = Vector3(2, 2, 2)
+
+[node name="Node3D" type="Node3D" unique_id=319757801]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=743514883]
+environment = SubResource("Environment_acn53")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=786261955]
+transform = Transform3D(0.492424, 0.861673, 0.122634, 0, 0.140901, -0.990024, -0.870356, 0.487511, 0.0693831, 0, 0, 0)
+light_energy = 4.25
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2003945154]
+transform = Transform3D(0.885938, -0.265695, 0.380158, 0.0433924, 0.86354, 0.502411, -0.46177, -0.428609, 0.776571, 1.10608, 2.53963, 1.89483)
+fov = 72.9821
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1240855774]
+transform = Transform3D(0.431059, 0.243763, -0.868774, -0.108784, 0.969835, 0.218143, 0.895742, 0.000476331, 0.444574, 0.92, 1.126, -1.042)
+mesh = SubResource("BoxMesh_s81mv")
+script = ExtResource("2_64n4t")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1421196621]
+
+[node name="Control" type="Control" parent="UI" unique_id=402254253]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_0ljkr")
+metadata/_edit_use_anchors_ = true
+
+[node name="StartButton" type="Button" parent="UI/Control" unique_id=2044969389]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0033125
+anchor_top = 0.8488519
+anchor_right = 0.9994376
+anchor_bottom = 1.0034815
+offset_left = 6.36
+offset_top = 0.2399292
+offset_right = 0.079833984
+offset_bottom = 0.23999023
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(949, 74)
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("4_0ljkr")
+theme_override_font_sizes/font_size = 70
+text = "START"
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="UI/Control" unique_id=681275935]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.073
+anchor_top = 0.206
+anchor_right = 0.468
+anchor_bottom = 0.471
+offset_left = 0.839981
+offset_top = 0.519989
+offset_right = 0.439819
+offset_bottom = 0.319977
+pivot_offset = Vector2(380, 138)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_0ljkr")
+theme_override_font_sizes/font_size = 126
+text = "HEAVEN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2130106602]
+stream = ExtResource("5_0ljkr")
+autoplay = true
+bus = &"SFX"
+
+[connection signal="pressed" from="UI/Control/StartButton" to="UI/Control" method="_on_start_button_pressed"]

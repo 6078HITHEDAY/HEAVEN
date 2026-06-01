@@ -1,0 +1,75 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="HEAVEN"
+run/main_scene="uid://xsoy4ngrc0mp"
+config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/stretch_mode=0
+boot_splash/use_filter=false
+config/icon="uid://cc16pdvcgmwjm"
+
+[audio]
+
+buses/default_bus_layout="uid://bvcmegahuqojq"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="5321"
+
+[editor]
+
+movie_writer/movie_file="/home/myxcat/文档/GitHub/HEAVEN-musical-theater/HEAVEN/try.avi"
+movie_writer/disable_vsync=true
+movie_writer/fps=30
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "teal",
+"res://assets/ui/": "blue",
+"res://config/": "green",
+"res://data/": "green",
+"res://docs/": "gray",
+"res://scenes/": "teal",
+"res://scenes/editor/": "purple",
+"res://scenes/game/": "green",
+"res://scenes/ui/": "teal",
+"res://scripts/": "red",
+"res://scripts/editor/": "purple",
+"res://scripts/game/": "green",
+"res://scripts/ui/": "red",
+"res://shaders/": "orange",
+"res://shaders/ui/": "orange",
+"res://themes/": "green"
+}
+
+[input_devices]
+
+pointing/android/enable_pan_and_scale_gestures=true
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
+viewport/hdr_2d=true
+anti_aliasing/quality/use_taa=true
