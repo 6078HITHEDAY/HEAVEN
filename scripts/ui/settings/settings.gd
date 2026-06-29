@@ -18,7 +18,7 @@ func _ready() -> void:
 	_configure_slider(audio_offset_slider, RhythmSettings.MIN_OFFSET_MS, RhythmSettings.MAX_OFFSET_MS, RhythmSettings.OFFSET_STEP_MS)
 	_configure_slider(judgement_offset_slider, RhythmSettings.MIN_OFFSET_MS, RhythmSettings.MAX_OFFSET_MS, RhythmSettings.OFFSET_STEP_MS)
 	load_settings()
-	_connect_persistence_signals()
+	_connect_setting_signals()
 
 func _on_texture_button_pressed() -> void:
 	save_settings()
@@ -26,7 +26,6 @@ func _on_texture_button_pressed() -> void:
 
 func save_settings() -> bool:
 	_sync_settings_from_controls()
-	settings.apply_audio()
 	return settings.save()
 
 func load_settings() -> void:
@@ -47,7 +46,7 @@ func _on_sfx_value_changed(value: float) -> void:
 	settings.apply_audio()
 
 func _on_setting_changed(_value: Variant = null) -> void:
-	save_settings()
+	_sync_settings_from_controls()
 
 func _configure_volume_slider(slider: HSlider) -> void:
 	_configure_slider(slider, RhythmSettings.MIN_VOLUME_PERCENT, RhythmSettings.MAX_VOLUME_PERCENT, RhythmSettings.VOLUME_STEP)
@@ -59,7 +58,7 @@ func _configure_slider(slider: HSlider, min_value: float, max_value: float, step
 	slider.allow_greater = false
 	slider.allow_lesser = false
 
-func _connect_persistence_signals() -> void:
+func _connect_setting_signals() -> void:
 	var sliders: Array[HSlider] = [
 		master_slider,
 		music_slider,

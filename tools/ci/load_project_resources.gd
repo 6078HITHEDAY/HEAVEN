@@ -1,12 +1,21 @@
 extends SceneTree
 
 const RESOURCE_EXTENSIONS := [".gd", ".gdshader", ".tres", ".tscn"]
+const RESOURCE_ROOTS := [
+	"res://scenes",
+	"res://scripts",
+	"res://assets",
+	"res://shaders",
+	"res://themes",
+	"res://config",
+]
 
 var failed := false
 
 func _initialize() -> void:
-	for path in _resource_paths("res://"):
-		_load_resource(path)
+	for root_path in RESOURCE_ROOTS:
+		for path in _resource_paths(root_path):
+			_load_resource(path)
 
 	if failed:
 		quit(1)
@@ -22,8 +31,11 @@ func _resource_paths(root_path: String) -> Array[String]:
 		var current_path := dirs.pop_back() as String
 		var dir := DirAccess.open(current_path)
 		if dir == null:
-			push_error("Could not open directory: %s" % current_path)
-			failed = true
+			if current_path == root_path:
+				push_warning("Skipping missing resource directory: %s" % current_path)
+			else:
+				push_error("Could not open directory: %s" % current_path)
+				failed = true
 			continue
 
 		dir.list_dir_begin()
