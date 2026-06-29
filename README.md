@@ -98,13 +98,17 @@ data/songs/         预留：曲目资源
 data/boss/          预留：Boss 与 Live2D 事件数据
 assets/fonts/       通用字体资源
 config/             项目配置资源
-docs/               架构与谱面格式文档
+docs/en/            英文文档
+docs/zh/            中文文档
 ```
 
 ## 文档
 
-- `docs/architecture/system_architecture.md`：系统分层、当前 UI 范围、未来游戏主体与编辑器边界。
-- `docs/chart_format/chart_format_draft.md`：第一版 JSON 谱面格式草案。
+- `docs/README.md`：文档语言入口。
+- `docs/zh/architecture/system_architecture.md`：系统分层、当前 UI 范围、未来游戏主体与编辑器边界。
+- `docs/zh/chart_format/chart_format_draft.md`：第一版 JSON 谱面格式草案。
+- `docs/en/architecture/system_architecture.md`：English system architecture document.
+- `docs/en/chart_format/chart_format_draft.md`：English chart format draft.
 
 ## 当前开发阶段
 
