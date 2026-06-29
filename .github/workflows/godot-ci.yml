@@ -1,0 +1,43 @@
+name: Godot CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: "4.7"
+
+jobs:
+  validate:
+    name: Validate Godot project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Godot
+        shell: bash
+        run: |
+          version="${GODOT_VERSION}"
+          archive="Godot_v${version}-stable_linux.x86_64.zip"
+          url="https://github.com/godotengine/godot-builds/releases/download/${version}-stable/${archive}"
+          curl --fail --location --retry 3 --output godot.zip "${url}"
+          unzip -q godot.zip
+          sudo install -m 0755 "Godot_v${version}-stable_linux.x86_64" /usr/local/bin/godot
+          godot --version
+
+      - name: Check res paths
+        run: python3 tools/ci/check_res_paths.py
+
+      - name: Import project
+        run: xvfb-run --auto-servernum godot --headless --import --quit
+
+      - name: Load project resources
+        run: xvfb-run --auto-servernum godot --headless --script tools/ci/load_project_resources.gd
