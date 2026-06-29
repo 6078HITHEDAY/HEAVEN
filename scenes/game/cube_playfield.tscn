@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://cm0b4iyf36x0n"]
+
+[ext_resource type="Script" uid="uid://bwblx6p70k4ad" path="res://scripts/game/cube_playfield.gd" id="1_qo8dq"]
+[ext_resource type="Shader" uid="uid://cfxh5tbb8kbjg" path="res://shaders/game/cube_edge_shell.gdshader" id="2_77m53"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qo8dq"]
+sky_top_color = Color(0.01, 0.012, 0.018, 1)
+sky_horizon_color = Color(0.018, 0.012, 0.03, 1)
+ground_bottom_color = Color(0.005, 0.005, 0.008, 1)
+ground_horizon_color = Color(0.01, 0.008, 0.015, 1)
+
+[sub_resource type="Sky" id="Sky_qo8dq"]
+sky_material = SubResource("ProceduralSkyMaterial_qo8dq")
+
+[sub_resource type="Environment" id="Environment_qo8dq"]
+background_mode = 2
+sky = SubResource("Sky_qo8dq")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_outer"]
+render_priority = 1
+shader = ExtResource("2_77m53")
+shader_parameter/cube_half_size = 3.0
+shader_parameter/edge_width = 0.08
+shader_parameter/edge_color = Color(1, 0.82, 0.35, 1)
+shader_parameter/shell_color = Color(0, 0, 0, 0)
+shader_parameter/edge_emission = 2.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_outer"]
+size = Vector3(6, 6, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_outer_touch"]
+size = Vector3(6, 6, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_center"]
+albedo_color = Color(1, 0.92, 0.55, 1)
+emission_enabled = true
+emission = Color(1, 0.82, 0.35, 1)
+emission_energy_multiplier = 1.25
+
+[sub_resource type="BoxMesh" id="BoxMesh_center"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_emitter"]
+emission_shape = 1
+emission_sphere_radius = 0.28
+direction = Vector3(0, 0, -1)
+spread = 2.0
+initial_velocity_min = 0.8
+initial_velocity_max = 1.8
+gravity = Vector3(0, 0, 0)
+scale_min = 0.03
+scale_max = 0.08
+color = Color(0.8, 0.95, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_particle"]
+size = Vector3(0.08, 0.08, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_target"]
+albedo_color = Color(0.5, 1, 0.75, 1)
+emission_enabled = true
+emission = Color(0.25, 1, 0.65, 1)
+emission_energy_multiplier = 1.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_target"]
+size = Vector3(0.52, 0.52, 0.08)
+
+[node name="CubePlayfield" type="Node3D" unique_id=1760135717]
+script = ExtResource("1_qo8dq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=680986103]
+environment = SubResource("Environment_qo8dq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1644687503]
+transform = Transform3D(0.7071068, -0.35355338, 0.6123724, 0, 0.8660254, 0.5, -0.7071068, -0.35355338, 0.6123724, 0, 0, 0)
+light_energy = 1.8
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1154730797]
+transform = Transform3D(0.6815483, -0.44114277, 0.58385354, 0, 0.7978614, 0.6028409, -0.73177314, -0.4108652, 0.5437811, 7.852812, 7.6627846, 7.823488)
+current = true
+fov = 41.8
+
+[node name="OuterShell" type="Node3D" parent="." unique_id=494021811]
+
+[node name="OuterCube" type="MeshInstance3D" parent="OuterShell" unique_id=1437829263]
+material_override = SubResource("ShaderMaterial_outer")
+mesh = SubResource("BoxMesh_outer")
+
+[node name="TouchBoundary" type="StaticBody3D" parent="OuterShell" unique_id=1673122328]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OuterShell/TouchBoundary" unique_id=583035121]
+shape = SubResource("BoxShape3D_outer_touch")
+
+[node name="EmitterCore" type="Node3D" parent="." unique_id=85535020]
+
+[node name="CenterCube" type="MeshInstance3D" parent="EmitterCore" unique_id=749787727]
+material_override = SubResource("StandardMaterial3D_center")
+mesh = SubResource("BoxMesh_center")
+
+[node name="EmissionParticles" type="GPUParticles3D" parent="EmitterCore" unique_id=1941230171]
+emitting = false
+amount = 32
+lifetime = 0.45
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource("ParticleProcessMaterial_emitter")
+draw_pass_1 = SubResource("BoxMesh_particle")
+
+[node name="TargetMarker" type="MeshInstance3D" parent="." unique_id=398974028]
+visible = false
+material_override = SubResource("StandardMaterial3D_target")
+mesh = SubResource("BoxMesh_target")
+
+[node name="Notes" type="Node3D" parent="." unique_id=617174556]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1578894479]
+
+[node name="Stats" type="Label" parent="HUD" unique_id=1917629215]
+offset_left = 32.0
+offset_top = 30.0
+offset_right = 412.0
+offset_bottom = 210.0
+theme_override_font_sizes/font_size = 34
+text = "Score 0
+Combo 0
+Best 0
+Time 0.00"
+
+[node name="Feedback" type="Label" parent="HUD" unique_id=1093150001]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -70.0
+offset_right = 260.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 64
+text = "READY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Label" parent="HUD" unique_id=1473712172]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -430.0
+offset_top = -86.0
+offset_right = 430.0
+offset_bottom = -30.0
+theme_override_font_sizes/font_size = 28
+text = "CUBE: HIT / HOLD    OUTSIDE DRAG: VIEW    ESC: BACK"
+horizontal_alignment = 1

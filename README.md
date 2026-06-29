@@ -98,17 +98,21 @@ data/songs/         预留：曲目资源
 data/boss/          预留：Boss 与 Live2D 事件数据
 assets/fonts/       通用字体资源
 config/             项目配置资源
-docs/               架构与谱面格式文档
+docs/en/            英文文档
+docs/zh/            中文文档
 ```
 
 ## 文档
 
-- `docs/architecture/system_architecture.md`：系统分层、当前 UI 范围、未来游戏主体与编辑器边界。
-- `docs/chart_format/chart_format_draft.md`：第一版 JSON 谱面格式草案。
+- `docs/README.md`：文档语言入口。
+- `docs/zh/architecture/system_architecture.md`：系统分层、当前 UI 范围、未来游戏主体与编辑器边界。
+- `docs/zh/chart_format/chart_format_draft.md`：第一版 JSON 谱面格式草案。
+- `docs/en/architecture/system_architecture.md`：English system architecture document.
+- `docs/en/chart_format/chart_format_draft.md`：English chart format draft.
 
 ## 当前开发阶段
 
-项目当前处于 `阶段 0：概念原型与工程整理`。
+项目当前处于 `阶段 1：核心玩法最小原型` 的初步实现阶段。
 
 这一阶段的目标不是立即完成完整玩法，而是先把工程入口、场景流转、基础菜单和项目文档整理稳定，为后续立方体音游核心玩法打地基。
 
@@ -118,13 +122,14 @@ docs/               架构与谱面格式文档
 - UI 系统：启动界面、3D 开始界面、主菜单、设置页、关于页、选择页。
 - 音频总线配置与基础音量设置逻辑。
 - UI 美术资源、字体资源、菜单音频和菜单 shader 资源。
+- 最小 Surface Tap 原型：外置立方体、中心立方体、测试音符、基础时间轴、判定、分数、连击和反馈显示。
 
 当前优先事项：
 
-- 修复场景跳转、信号连接和 Android 导出场景列表。
-- 已明确当前内容属于 UI 系统，后续游戏主体、谱面编辑器和数据资源独立分类。
-- 建立第一版谱面数据格式。
-- 实现最小可玩的立方体 Surface Tap 判定原型。
+- 将硬编码测试音符迁移为 JSON 谱面加载。
+- 加入测试歌曲与音频时间轴同步。
+- 继续打磨 Surface Tap 的视觉反馈、输入方式和判定窗口。
+- 为后续 Edge Slide、Spatial Judge 和谱面编辑器保留清晰边界。
 
 ## 开发阶段规划
 

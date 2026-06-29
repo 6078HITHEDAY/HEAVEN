@@ -79,6 +79,23 @@ scripts/game/score_state.gd
 scripts/game/spatial_transform.gd
 ```
 
+### Gameplay Settings
+
+The shared rhythm settings interface is reserved in
+`scripts/game/rhythm_settings.gd`.
+
+It owns persisted settings that both UI and future gameplay code can read:
+
+- Audio bus volumes
+- Note speed
+- Global audio offset in milliseconds
+- Judgement offset in milliseconds
+- Player name
+
+The settings UI may edit these values, but future chart playback and judgement
+systems should read them through `RhythmSettings` instead of depending on
+`scripts/ui/settings/settings.gd` or UI scene nodes.
+
 ### Chart Editor
 
 The chart editor should create and modify chart data used by the game runtime.
